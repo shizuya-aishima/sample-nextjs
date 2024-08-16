@@ -34,6 +34,7 @@ jobs:
       - node/install-packages:
           app-dir: ./my
           pkg-manager: yarn
+          check-cache: always
       - run:
           name: build
           command: cd my && yarn build
