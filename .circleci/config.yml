@@ -33,6 +33,7 @@ jobs:
           install-yarn: true
       - node/install-packages:
           app-dir: ./my
+          pkg-manager: yarn
       - run:
           name: build
           command: yarn build
