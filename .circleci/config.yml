@@ -36,7 +36,7 @@ jobs:
           pkg-manager: yarn
       - run:
           name: build
-          command: yarn build
+          command: cd my && yarn build
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
 workflows:
