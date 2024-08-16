@@ -1,10 +1,10 @@
-import Image from "next/image";
-import type { ReactNode } from "react";
-import { StoreProvider } from "./StoreProvider";
-import { Nav } from "./components/Nav";
+import Image from 'next/image';
+import type { ReactNode } from 'react';
+import { StoreProvider } from './StoreProvider';
+import { Nav } from './components/Nav';
 
-import "./styles/globals.css";
-import styles from "./styles/layout.module.css";
+import './styles/globals.css';
+import styles from './styles/layout.module.css';
 
 interface Props {
   readonly children: ReactNode;
@@ -13,25 +13,14 @@ interface Props {
 export default function RootLayout({ children }: Props) {
   return (
     <StoreProvider>
-      <html lang="en">
-        <body>
-          <section className={styles.container}>
+      <html lang="en" className="h-full">
+        <body className="h-full overflow-hidden bg-gray-300">
+          <section className="flex h-full flex-col text-center">
             <Nav />
 
-            <header className={styles.header}>
-              <Image
-                src="/logo.svg"
-                className={styles.logo}
-                alt="logo"
-                width={100}
-                height={100}
-              />
-              <h1 className="text-3xl font-bold underline">
-                Hello world!
-              </h1>
-            </header>
-
-            <main className={styles.main}>{children}</main>
+            <main className="container mx-auto flex h-full flex-col items-center justify-center p-4">
+              {children}
+            </main>
 
             <footer className={styles.footer}>
               <span>Learn </span>
