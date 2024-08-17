@@ -13,5 +13,6 @@
     "*.css": "tailwindcss"
   },
   "files.insertFinalNewline": true,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2
 }

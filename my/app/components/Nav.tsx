@@ -1,9 +1,13 @@
 'use client';
 
+import { selectNavigate } from '@/lib/features/navigate/navigateSlice';
+import { useAppSelector } from '@/lib/hooks';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 export const Nav = () => {
   const pathname = usePathname();
+  const navigateState = useAppSelector(selectNavigate);
 
   return (
     <header className="flex bg-slate-600 text-gray-50">
@@ -25,10 +29,15 @@ export const Nav = () => {
         </a>
         <div className="flex flex-1">
           <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
-            <a className="mr-5 hover:text-gray-400">First Link</a>
-            <a className="mr-5 hover:text-gray-400">Second Link</a>
-            <a className="mr-5 hover:text-gray-400">Third Link</a>
-            <a className="mr-5 hover:text-gray-400">Fourth Link</a>
+            {navigateState.map((e) => (
+              <Link
+                key={e.path}
+                className="mr-5 hover:text-gray-400"
+                href={e.path}
+              >
+                {e.name}
+              </Link>
+            ))}
           </nav>
           <button className="mt-4 inline-flex items-center rounded border-0 bg-gray-800 px-3 py-1 text-base hover:bg-gray-950 focus:outline-none md:mt-0">
             logout
