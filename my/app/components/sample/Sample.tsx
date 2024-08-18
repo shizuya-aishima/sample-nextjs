@@ -6,7 +6,6 @@ type SsrComponentProps = {
 };
 const SsrComponent = async ({ onClick }: SsrComponentProps) => {
   const { data } = await fetchCount(100);
-  console.log('SsrComponent');
 
   return (
     <form action={onClick}>
