@@ -13,8 +13,6 @@ jobs:
       - image: cimg/node:22.5
     steps:
       - checkout
-      # - node/install:
-      #     install-yarn: true
       - node/install-packages:
           app-dir: ./my
           pkg-manager: yarn
