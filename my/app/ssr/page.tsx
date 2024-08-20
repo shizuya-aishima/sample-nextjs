@@ -2,6 +2,7 @@ import { fetchCount } from '@/lib/features/counter/counterAPI';
 import SsrComponent from '../components/sample/Sample';
 import { onClick } from './actions';
 import { PrimaryButton } from '../components/atom/button/primaryButton';
+import { MyForm } from './form';
 
 const Page = async () => {
   // Fetch data from external API
@@ -11,6 +12,7 @@ const Page = async () => {
 
   return (
     <div>
+      <MyForm />
       {data}
       <PrimaryButton onClick={onClick}>sample</PrimaryButton>
       {/* <button onClick={sample}>test</button> */}
