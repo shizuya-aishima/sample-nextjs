@@ -15,7 +15,7 @@ export const converter = <T extends z.AnyZodObject>(
   },
 });
 
-const testSchema = z.object({
+export const testSchema = z.object({
   name: z.string().min(1, '名前は必須です'),
   email: z.string().email('正しいメールアドレスを入力してください'),
   age: z.number().min(18, '18歳以上である必要があります'),

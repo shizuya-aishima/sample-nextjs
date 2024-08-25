@@ -7,13 +7,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { PrimaryButton } from '../components/atom/button/primaryButton';
 import { firestoreTest } from './actions';
-
-// zodを使って、フィールドのスキーマを定義します
-const schema = z.object({
-  name: z.string().min(1, '名前は必須です'),
-  email: z.string().email('正しいメールアドレスを入力してください'),
-  age: z.number().min(18, '18歳以上である必要があります'),
-});
+import { testSchema } from './types';
 
 export const MyForm = () => {
   const {
@@ -23,7 +17,7 @@ export const MyForm = () => {
   } = useForm({
     // zodResolver関数を使って、バリデーション用のリゾルバを作成し、
     // そのまま作成したリゾルバを渡します
-    resolver: zodResolver(schema),
+    resolver: zodResolver(testSchema),
   });
 
   const onSubmit = (data: any) => {
