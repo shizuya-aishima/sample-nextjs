@@ -1,9 +1,12 @@
 'use client';
 
+import { db } from '@/lib/firebase/init';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { collection, getDocs } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { PrimaryButton } from '../components/atom/button/primaryButton';
+import { firestoreTest } from './actions';
 
 // zodを使って、フィールドのスキーマを定義します
 const schema = z.object({
@@ -25,7 +28,18 @@ export const MyForm = () => {
 
   const onSubmit = (data: any) => {
     console.log(data);
+    test();
+    firestoreTest();
   };
+
+  const test = async () => {
+    console.log('test');
+    const querySnapshot = await getDocs(collection(db, 'test'));
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+    });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
       <div className="flex flex-col">
