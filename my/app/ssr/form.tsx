@@ -7,31 +7,21 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { PrimaryButton } from '../components/atom/button/primaryButton';
 import { firestoreTest } from './actions';
-import { testSchema } from './types';
+import { Test, testSchema } from './types';
 
 export const MyForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<Test>({
     // zodResolver関数を使って、バリデーション用のリゾルバを作成し、
     // そのまま作成したリゾルバを渡します
     resolver: zodResolver(testSchema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    test();
-    firestoreTest();
-  };
-
-  const test = async () => {
-    console.log('test');
-    const querySnapshot = await getDocs(collection(db, 'test'));
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-    });
+  const onSubmit = (data: Test) => {
+    firestoreTest(data);
   };
 
   return (
