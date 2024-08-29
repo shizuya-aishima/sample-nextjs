@@ -10,7 +10,7 @@ export const UserTable = async () => {
   );
   const dataList = querySnapshot.docs.map((data) => data.data()).map((e) => e);
   return (
-    <table className="w-full table-auto hover:table-fixed">
+    <table className="w-full table-auto">
       <thead>
         <tr>
           <th>名前</th>
@@ -19,8 +19,8 @@ export const UserTable = async () => {
         </tr>
       </thead>
       <tbody>
-        {dataList.map((data) => (
-          <tr key={data.email}>
+        {dataList.map((data, i) => (
+          <tr key={data.email + i}>
             <td>{data.name}</td>
             <td>{data.email}</td>
             <td>{data.age}</td>

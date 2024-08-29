@@ -9,6 +9,10 @@ export type NavigateState = {
 
 const initialState: NavigateState = [
   {
+    name: 'material',
+    path: '/material',
+  },
+  {
     name: 'sample',
     path: '/sample',
   },

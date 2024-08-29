@@ -1,7 +1,7 @@
 'use server';
 
 import { db } from '@/lib/firebase/init';
-import { collection, doc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, doc, setDoc } from 'firebase/firestore';
 import { Test, testConverter } from './types';
 
 export const onClick = async () => {

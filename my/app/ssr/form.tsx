@@ -24,6 +24,8 @@ export const MyForm = () => {
     firestoreTest(data);
   };
 
+  const test = { ...register('email') };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
       <div className="flex flex-col">
