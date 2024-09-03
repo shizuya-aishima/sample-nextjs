@@ -1,31 +1,31 @@
 'use client';
 
+import { db } from '@/lib/firebase/init';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { collection, getDocs } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { PrimaryButton } from '../components/atom/button/primaryButton';
-
-// zodを使って、フィールドのスキーマを定義します
-const schema = z.object({
-  name: z.string().min(1, '名前は必須です'),
-  email: z.string().email('正しいメールアドレスを入力してください'),
-  age: z.number().min(18, '18歳以上である必要があります'),
-});
+import { firestoreTest } from './actions';
+import { Test, testSchema } from './types';
 
 export const MyForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<Test>({
     // zodResolver関数を使って、バリデーション用のリゾルバを作成し、
     // そのまま作成したリゾルバを渡します
-    resolver: zodResolver(schema),
+    resolver: zodResolver(testSchema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = (data: Test) => {
+    firestoreTest(data);
   };
+
+  const test = { ...register('email') };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
       <div className="flex flex-col">
