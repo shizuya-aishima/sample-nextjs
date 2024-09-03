@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { MaterialFrom } from './form';
 import { MaterialTable } from './table';
 
@@ -8,7 +9,9 @@ const Material = ({
 }) => {
   return (
     <div className="flex w-full flex-1 flex-col gap-2">
-      <MaterialFrom />
+      <Suspense fallback={<div>Loading...</div>}>
+        <MaterialFrom />
+      </Suspense>
       <MaterialTable searchParams={searchParams} />
     </div>
   );
