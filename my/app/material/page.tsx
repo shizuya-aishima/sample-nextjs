@@ -9,8 +9,8 @@ const Material = ({
 }) => {
   return (
     <div className="flex w-full flex-1 flex-col gap-2">
-      <MaterialFrom />
       <Suspense fallback={<div>Loading...</div>}>
+        <MaterialFrom />
         <MaterialTable searchParams={searchParams} />
       </Suspense>
     </div>
