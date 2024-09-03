@@ -11,6 +11,8 @@ const Material = ({
     <div className="flex w-full flex-1 flex-col gap-2">
       <Suspense fallback={<div>Loading...</div>}>
         <MaterialFrom />
+      </Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         <MaterialTable searchParams={searchParams} />
       </Suspense>
     </div>
