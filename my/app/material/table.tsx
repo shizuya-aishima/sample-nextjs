@@ -20,11 +20,12 @@ export const MaterialTable = async ({ searchParams }: MaterialTableProps) => {
     query(
       collection(db, 'material').withConverter(materialConverter),
       orderBy('name'),
-      startAt(searchParams.name),
-      endAt(searchParams.name + '\uf8ff'),
+      startAt(searchParams.name ?? ''),
+      endAt(searchParams.name ?? '' + '\uf8ff'),
       limit(20),
     ),
   );
+  await new Promise((resolve) => setTimeout(resolve, 10000));
 
   return (
     <div className="flex flex-1 flex-col">
