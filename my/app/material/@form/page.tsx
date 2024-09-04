@@ -8,7 +8,7 @@ import { TextField } from '../../components/atom/input';
 import { materialFromSchema, MaterialType } from '../types';
 import { v4 as uuidv4 } from 'uuid';
 
-export const Page = () => {
+const Page = () => {
   const router = useRouter(); //ルーターの取得
   const searchParams = useSearchParams();
   const {
