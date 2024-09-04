@@ -3,9 +3,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import { PrimaryButton } from '../components/atom/button/primaryButton';
-import { TextField } from '../components/atom/input';
-import { materialFromSchema, MaterialType } from './types';
+import { PrimaryButton } from '../../components/atom/button/primaryButton';
+import { TextField } from '../../components/atom/input';
+import { materialFromSchema, MaterialType } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
 export const MaterialFrom = () => {
   const router = useRouter(); //ルーターの取得
@@ -25,6 +26,7 @@ export const MaterialFrom = () => {
     console.log(data);
     const params = new URLSearchParams();
     params.set('name', data.name);
+    params.set('executeId', uuidv4());
 
     router.push(`?${params.toString()}`); // 新しいクエリパラメーターでページをリロード
   };
@@ -47,3 +49,5 @@ export const MaterialFrom = () => {
     </form>
   );
 };
+
+export default MaterialFrom;
