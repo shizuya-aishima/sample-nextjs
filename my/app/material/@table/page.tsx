@@ -65,7 +65,7 @@ const Table = async ({ name }: { name: string }) => {
     </div>
   );
 };
-export const MaterialTable = async ({ searchParams }: MaterialTableProps) => {
+export const Page = async ({ searchParams }: MaterialTableProps) => {
   const name = searchParams.name || '';
   const executeId = searchParams.executeId || '';
 
@@ -76,4 +76,4 @@ export const MaterialTable = async ({ searchParams }: MaterialTableProps) => {
   );
 };
 
-export default MaterialTable;
+export default Page;
