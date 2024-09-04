@@ -12,7 +12,7 @@ const Layout = ({
   return (
     <div className="flex h-full w-full flex-col gap-8">
       <Suspense fallback={<div>Loading form...</div>}>{form}</Suspense>
-      {table}
+      <Suspense fallback={<div>Loading table...</div>}>{table}</Suspense>
     </div>
   );
 };
