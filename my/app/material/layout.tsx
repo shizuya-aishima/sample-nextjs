@@ -13,6 +13,7 @@ const Layout = ({
     <div className="flex h-full w-full flex-col gap-8">
       {form}
       {table}
+      {children}
     </div>
   );
 };
