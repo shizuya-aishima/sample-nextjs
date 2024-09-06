@@ -14,6 +14,7 @@ import { materialConverter } from '../types';
 import { Suspense } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: '素材',
@@ -54,9 +55,11 @@ const Table = async ({ name }: { name: string }) => {
         <tbody className="divide-y divide-gray-200 overflow-x-hidden dark:divide-neutral-700">
           {querySnapshot.docs
             .map((item) => item.data())
-            .map((item) => (
+            .map((item, i) => (
               <tr key={item.name}>
-                <td className="py-3 ps-4">{item.name}</td>
+                <td className="py-3 ps-4">
+                  <Link href={'/material/test' + i}>{item.name}</Link>
+                </td>
                 <td className="py-3 ps-4">{item.count.toLocaleString()}</td>
               </tr>
             ))}

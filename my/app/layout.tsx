@@ -8,9 +8,10 @@ import styles from './styles/layout.module.css';
 
 interface Props {
   readonly children: ReactNode;
+  readonly modal: React.ReactNode;
 }
 
-export default function RootLayout({ children }: Props) {
+export default function RootLayout({ children, modal }: Props) {
   return (
     <StoreProvider>
       <html lang="en" className="h-full">
@@ -21,6 +22,10 @@ export default function RootLayout({ children }: Props) {
             <main className="container mx-auto flex h-full flex-col items-center justify-center p-4">
               {children}
             </main>
+
+            {/* modal 表示用 */}
+            {modal}
+            <div id="modal-root" />
 
             <footer className={styles.footer}>
               <span>Learn </span>
