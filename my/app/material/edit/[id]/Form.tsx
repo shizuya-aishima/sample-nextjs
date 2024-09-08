@@ -37,7 +37,7 @@ export const MaterialEditForm = ({ data, onClick }: MaterialEditFormProsp) => {
 
     await onClick(input);
 
-    router.back();
+    router.push('/material');
   };
 
   return (

@@ -11,7 +11,7 @@ import {
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
-import { materialSelectConverter } from '../types';
+import { materialSelectConverter } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
 
 export const metadata: Metadata = {
@@ -55,7 +55,7 @@ const Table = async ({ name }: { name: string }) => {
             .map((item) => item.data())
             .map((item) => (
               <tr key={item.id}>
-                <td className="py-3 ps-4">
+                <td className="py-3 ps-4 text-blue-600">
                   <Link
                     href={
                       '/material/edit/' + item.id + '?executeId=' + uuidv4()
