@@ -4,11 +4,11 @@ import { Suspense } from 'react';
 const Layout = ({
   children,
   form,
-  // table,
+  table,
 }: {
   children: React.ReactNode;
   form: React.ReactNode;
-  // table: React.ReactNode;
+  table: React.ReactNode;
 }) => {
   let photos = Array.from({ length: 6 }, (_, i) => i + 1);
   return (
@@ -20,7 +20,7 @@ const Layout = ({
       ))}
       {children}
       {form}
-      {/* {table} */}
+      {table}
     </section>
   );
 };
