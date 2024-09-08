@@ -1,6 +1,10 @@
 import { db } from '@/lib/firebase/init';
-import { doc, getDoc } from 'firebase/firestore';
-import { materialSelectConverter } from '../types';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import {
+  materialCreateConverter,
+  materialSelectConverter,
+  MaterialType,
+} from '../../types';
 import { MaterialEditForm } from './Form';
 
 export function generateStaticParams() {
@@ -17,9 +21,17 @@ const MaterialEdit = async ({ params: { id } }: { params: { id: string } }) => {
     return;
   }
 
+  const onClick = async (data: MaterialType) => {
+    'use server';
+    await setDoc(
+      doc(db, 'material', data.id).withConverter(materialCreateConverter),
+      data,
+    );
+  };
+
   return (
     <div className="w-full">
-      <MaterialEditForm data={docRef} />
+      <MaterialEditForm data={docRef} onClick={onClick} />
     </div>
   );
 };

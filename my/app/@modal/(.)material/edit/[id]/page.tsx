@@ -1,4 +1,4 @@
-import MaterialEdit from '@/app/material/[id]/page';
+import MaterialEdit from '@/app/material/edit/[id]/page';
 import { Modal } from './modal';
 
 const Page = ({

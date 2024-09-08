@@ -1,5 +1,3 @@
-import { Suspense } from 'react';
-
 const Layout = ({
   children,
   form,
