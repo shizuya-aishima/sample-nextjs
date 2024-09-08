@@ -2,6 +2,7 @@ import { converter } from '@/lib/firebase/utils';
 import * as z from 'zod';
 
 export const materialSchema = z.object({
+  id: z.string(),
   name: z
     .string()
     .min(1, '名前は必須です')

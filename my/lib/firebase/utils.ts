@@ -12,6 +12,6 @@ export const converter = <T extends z.AnyZodObject>(
     return schema.strict().parse(data);
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot<z.infer<T>>): z.infer<T> => {
-    return schema.strict().parse(snapshot.data());
+    return schema.strict().parse({ ...snapshot.data(), id: snapshot.id });
   },
 });

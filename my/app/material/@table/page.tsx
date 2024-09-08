@@ -55,10 +55,10 @@ const Table = async ({ name }: { name: string }) => {
         <tbody className="divide-y divide-gray-200 overflow-x-hidden dark:divide-neutral-700">
           {querySnapshot.docs
             .map((item) => item.data())
-            .map((item, i) => (
-              <tr key={item.name}>
+            .map((item) => (
+              <tr key={item.id}>
                 <td className="py-3 ps-4">
-                  <Link href={'/material/test' + i}>{item.name}</Link>
+                  <Link href={'/material/' + item.id}>{item.name}</Link>
                 </td>
                 <td className="py-3 ps-4">{item.count.toLocaleString()}</td>
               </tr>
