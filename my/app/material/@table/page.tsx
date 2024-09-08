@@ -57,7 +57,9 @@ const Table = async ({ name }: { name: string }) => {
               <tr key={item.id}>
                 <td className="py-3 ps-4">
                   <Link
-                    href={'/material/' + item.id + '?executeId=' + uuidv4()}
+                    href={
+                      '/material/edit/' + item.id + '?executeId=' + uuidv4()
+                    }
                   >
                     {item.name}
                   </Link>

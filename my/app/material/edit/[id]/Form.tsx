@@ -10,13 +10,14 @@ import {
   materialCreateConverter,
   materialSchema,
   MaterialType,
-} from '../types';
+} from '../../types';
 import { useRouter } from 'next/navigation';
 
 type MaterialEditFormProsp = {
   data: MaterialType;
+  onClick: (input: MaterialType) => Promise<void>;
 };
-export const MaterialEditForm = ({ data }: MaterialEditFormProsp) => {
+export const MaterialEditForm = ({ data, onClick }: MaterialEditFormProsp) => {
   const router = useRouter();
   const {
     register,
@@ -33,10 +34,8 @@ export const MaterialEditForm = ({ data }: MaterialEditFormProsp) => {
 
   const onSubmit = async (input: MaterialType) => {
     console.log(input);
-    await setDoc(
-      doc(db, 'material', data.id).withConverter(materialCreateConverter),
-      input,
-    );
+
+    await onClick(input);
 
     router.back();
   };
