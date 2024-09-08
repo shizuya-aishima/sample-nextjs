@@ -1,6 +1,7 @@
 import { db } from '@/lib/firebase/init';
 import { doc, getDoc } from 'firebase/firestore';
-import { materialConverter } from '../types';
+import { materialSelectConverter } from '../types';
+import { MaterialEditForm } from './Form';
 
 export function generateStaticParams() {
   let slugs = ['test1'];
@@ -9,10 +10,18 @@ export function generateStaticParams() {
 
 const MaterialEdit = async ({ params: { id } }: { params: { id: string } }) => {
   const docRef = (
-    await getDoc(doc(db, 'material', id).withConverter(materialConverter))
+    await getDoc(doc(db, 'material', id).withConverter(materialSelectConverter))
   ).data();
 
-  return <div className="w-full">{docRef?.name}</div>;
+  if (!docRef) {
+    return;
+  }
+
+  return (
+    <div className="w-full">
+      <MaterialEditForm data={docRef} />
+    </div>
+  );
 };
 
 export default MaterialEdit;

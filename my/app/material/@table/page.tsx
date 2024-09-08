@@ -1,20 +1,18 @@
 import { db } from '@/lib/firebase/init';
 import {
   collection,
-  DocumentData,
   endAt,
   getDocs,
   limit,
   orderBy,
   query,
-  QuerySnapshot,
   startAt,
 } from 'firebase/firestore';
-import { materialConverter } from '../types';
-import { Suspense } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import { Suspense } from 'react';
+import { materialSelectConverter } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
 export const metadata: Metadata = {
   title: '素材',
@@ -31,7 +29,7 @@ const Table = async ({ name }: { name: string }) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const querySnapshot = await getDocs(
     query(
-      collection(db, 'material').withConverter(materialConverter),
+      collection(db, 'material').withConverter(materialSelectConverter),
       orderBy('name'),
       startAt(name),
       endAt(name + '\uf8ff'),
@@ -58,7 +56,11 @@ const Table = async ({ name }: { name: string }) => {
             .map((item) => (
               <tr key={item.id}>
                 <td className="py-3 ps-4">
-                  <Link href={'/material/' + item.id}>{item.name}</Link>
+                  <Link
+                    href={'/material/' + item.id + '?executeId=' + uuidv4()}
+                  >
+                    {item.name}
+                  </Link>
                 </td>
                 <td className="py-3 ps-4">{item.count.toLocaleString()}</td>
               </tr>
