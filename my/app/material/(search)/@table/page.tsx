@@ -1,6 +1,8 @@
 import { db } from '@/lib/firebase/init';
 import {
   collection,
+  deleteDoc,
+  doc,
   endAt,
   getDocs,
   limit,
@@ -13,6 +15,7 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import { materialSelectConverter } from '../../types';
 import { v4 as uuidv4 } from 'uuid';
+import { PrimaryButton } from '@/app/components/atom/button/primaryButton';
 
 export const metadata: Metadata = {
   title: '素材',
@@ -37,6 +40,13 @@ const Table = async ({ name }: { name: string }) => {
     ),
   );
 
+  const onClickDelete = (id: string) => async () => {
+    'use server';
+
+    console.log(id);
+    await deleteDoc(doc(db, 'material', id));
+  };
+
   return (
     <div className="w-full divide-y divide-gray-200 rounded-lg border dark:divide-neutral-700 dark:border-neutral-700">
       <table className="min-w-full divide-y divide-gray-200 overflow-scroll dark:divide-neutral-700">
@@ -47,6 +57,9 @@ const Table = async ({ name }: { name: string }) => {
             </th>
             <th className="sticky top-0 px-6 py-3 text-center text-base font-bold uppercase">
               件数
+            </th>
+            <th className="sticky top-0 px-6 py-3 text-center text-base font-bold uppercase">
+              削除
             </th>
           </tr>
         </thead>
@@ -65,6 +78,11 @@ const Table = async ({ name }: { name: string }) => {
                   </Link>
                 </td>
                 <td className="py-3 ps-4">{item.count.toLocaleString()}</td>
+                <td>
+                  <PrimaryButton onClick={onClickDelete(item.id)}>
+                    delete
+                  </PrimaryButton>
+                </td>
               </tr>
             ))}
         </tbody>
@@ -72,6 +90,7 @@ const Table = async ({ name }: { name: string }) => {
     </div>
   );
 };
+
 const Page = async ({ searchParams }: MaterialTableProps) => {
   const name = searchParams.name || '';
   const executeId = searchParams.executeId || '';
