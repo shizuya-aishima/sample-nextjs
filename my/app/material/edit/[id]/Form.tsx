@@ -64,7 +64,7 @@ export const MaterialEditForm = ({ data, onClick }: MaterialEditFormProsp) => {
           type="number"
         />
       </div>
-      <PrimaryButton onClick={handleSubmit(onSubmit)}>登録</PrimaryButton>
+      <PrimaryButton onClick={() => {}}>登録</PrimaryButton>
     </form>
   );
 };

@@ -44,7 +44,7 @@ const Page = () => {
             oneRegister={register('name')}
           />
         </div>
-        <PrimaryButton onClick={handleSubmit(onSubmit)}>検索</PrimaryButton>
+        <PrimaryButton onClick={() => {}}>検索</PrimaryButton>
         <button type="button" onClick={() => router.push('/material/new')}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
