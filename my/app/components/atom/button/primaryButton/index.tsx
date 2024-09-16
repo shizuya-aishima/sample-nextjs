@@ -1,13 +1,13 @@
 'use client';
 
 type PrimaryButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   children: React.ReactNode;
 };
 
 export const PrimaryButton = ({ onClick, children }: PrimaryButtonProps) => {
   const handleClick = () => {
-    onClick();
+    onClick && onClick();
   };
 
   return (
