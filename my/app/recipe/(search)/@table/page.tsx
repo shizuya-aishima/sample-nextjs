@@ -15,13 +15,13 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { materialSelectConverter } from '../../types';
+import { recipeSelectConverter } from '../../types';
 
 export const metadata: Metadata = {
   title: '素材',
 };
 
-type MaterialTableProps = {
+type RecipeTableProps = {
   searchParams: {
     name?: string;
     executeId?: string;
@@ -32,7 +32,7 @@ const Table = async ({ name }: { name: string }) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const querySnapshot = await getDocs(
     query(
-      collection(db, 'material').withConverter(materialSelectConverter),
+      collection(db, 'material').withConverter(recipeSelectConverter),
       orderBy('name'),
       startAt(name),
       endAt(name + '\uf8ff'),
@@ -91,7 +91,7 @@ const Table = async ({ name }: { name: string }) => {
   );
 };
 
-const Page = async ({ searchParams }: MaterialTableProps) => {
+const Page = async ({ searchParams }: RecipeTableProps) => {
   const name = searchParams.name || '';
   const executeId = searchParams.executeId || '';
 

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { v4 as uuidv4 } from 'uuid';
 import { PrimaryButton } from '../../../components/atom/button/primaryButton';
 import { TextField } from '../../../components/atom/input';
-import { materialFromSchema, MaterialType } from '../../types';
+import { recipeFromSchema, RecipeType } from '../../types';
 
 const Page = () => {
   const router = useRouter(); //ルーターの取得
@@ -15,14 +15,14 @@ const Page = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<MaterialType>({
-    resolver: zodResolver(materialFromSchema),
+  } = useForm<RecipeType>({
+    resolver: zodResolver(recipeFromSchema),
     defaultValues: {
       name: searchParams?.get('name') ?? '',
     },
   });
 
-  const onSubmit = (data: MaterialType) => {
+  const onSubmit = (data: RecipeType) => {
     console.log(data);
     const params = new URLSearchParams();
     params.set('name', data.name);
