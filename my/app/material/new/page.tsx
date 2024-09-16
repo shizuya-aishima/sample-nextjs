@@ -1,9 +1,9 @@
 'use client';
 
 import { db } from '@/lib/firebase/init';
+import { addDoc, collection } from 'firebase/firestore';
 import { MaterialEditForm } from '../edit/[id]/Form';
 import { MaterialType } from '../types';
-import { addDoc, collection } from 'firebase/firestore';
 
 const MaterialNew = () => {
   const onClick = async (data: MaterialType) => {

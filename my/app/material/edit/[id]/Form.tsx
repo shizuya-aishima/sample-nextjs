@@ -2,16 +2,10 @@
 
 import { PrimaryButton } from '@/app/components/atom/button/primaryButton';
 import { TextField } from '@/app/components/atom/input';
-import { db } from '@/lib/firebase/init';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { doc, setDoc } from 'firebase/firestore';
-import { useForm } from 'react-hook-form';
-import {
-  materialCreateConverter,
-  materialSchema,
-  MaterialType,
-} from '../../types';
 import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { materialSchema, MaterialType } from '../../types';
 
 type MaterialEditFormProsp = {
   data: MaterialType;
@@ -64,7 +58,7 @@ export const MaterialEditForm = ({ data, onClick }: MaterialEditFormProsp) => {
           type="number"
         />
       </div>
-      <PrimaryButton onClick={() => {}}>登録</PrimaryButton>
+      <PrimaryButton>登録</PrimaryButton>
     </form>
   );
 };
