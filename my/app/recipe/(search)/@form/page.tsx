@@ -45,7 +45,7 @@ const Page = () => {
           />
         </div>
         <PrimaryButton>検索</PrimaryButton>
-        <button type="button" onClick={() => router.push('/material/new')}>
+        <button type="button" onClick={() => router.push('/recipe/new')}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

@@ -94,7 +94,7 @@ const Table = async ({ name }: { name: string }) => {
             <tr key={item.id}>
               <td className="py-3 ps-4 text-blue-600">
                 <Link
-                  href={'/material/edit/' + item.id + '?executeId=' + uuidv4()}
+                  href={'/recipe/edit/' + item.id + '?executeId=' + uuidv4()}
                 >
                   {item.name}
                 </Link>
