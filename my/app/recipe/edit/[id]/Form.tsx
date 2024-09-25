@@ -7,11 +7,11 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { recipeSchema, RecipeType } from '../../types';
 
-type MaterialEditFormProsp = {
+type RecipeEditFormProsp = {
   data: RecipeType;
   onClick: (input: RecipeType) => Promise<void>;
 };
-export const MaterialEditForm = ({ data, onClick }: MaterialEditFormProsp) => {
+export const RecipeEditForm = ({ data, onClick }: RecipeEditFormProsp) => {
   const router = useRouter();
   const {
     register,

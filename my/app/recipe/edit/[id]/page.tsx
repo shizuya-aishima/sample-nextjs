@@ -1,11 +1,11 @@
 import { db } from '@/lib/firebase/init';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import {
-  materialCreateConverter,
-  materialSelectConverter,
-  MaterialType,
+  recipeCreateConverter,
+  recipeSelectConverter,
+  RecipeType,
 } from '../../types';
-import { MaterialEditForm } from './Form';
+import { RecipeEditForm } from './Form';
 
 export function generateStaticParams() {
   let slugs = ['test1'];
@@ -14,24 +14,24 @@ export function generateStaticParams() {
 
 const MaterialEdit = async ({ params: { id } }: { params: { id: string } }) => {
   const docRef = (
-    await getDoc(doc(db, 'material', id).withConverter(materialSelectConverter))
+    await getDoc(doc(db, 'recipe', id).withConverter(recipeSelectConverter))
   ).data();
 
   if (!docRef) {
     return;
   }
 
-  const onClick = async (data: MaterialType) => {
+  const onClick = async (data: RecipeType) => {
     'use server';
     await setDoc(
-      doc(db, 'material', data.id).withConverter(materialCreateConverter),
+      doc(db, 'recipe', data.id).withConverter(recipeCreateConverter),
       data,
     );
   };
 
   return (
     <div className="w-full">
-      <MaterialEditForm data={docRef} onClick={onClick} />
+      <RecipeEditForm data={docRef} onClick={onClick} />
     </div>
   );
 };
