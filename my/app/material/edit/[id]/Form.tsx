@@ -29,7 +29,7 @@ export const MaterialEditForm = ({ data, onClick }: MaterialEditFormProsp) => {
   const onSubmit = async (input: MaterialType) => {
     console.log(input);
 
-    await onClick(input);
+    await onClick({ ...input, id: data.id });
 
     router.push('/material');
   };
