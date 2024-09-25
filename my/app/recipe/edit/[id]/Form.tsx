@@ -42,25 +42,26 @@ export const RecipeEditForm = ({ data, onClick }: RecipeEditFormProsp) => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-full flex-col gap-2"
     >
+      <input type="hidden" {...register('id')} />
       <div className="flex flex-row gap-4">
         <label className="m-auto text-nowrap">レシピ名</label>
 
         <TextField
           oneRegister={register('name')}
           error={errors.name}
-          placeholder="材料名"
+          placeholder="レシピ名"
         />
       </div>
       <div className="flex flex-row gap-4">
         {formData.items.map((item, index) => (
           <div key={index}>
-            <label className="m-auto text-nowrap">素材名</label>
+            <label className="m-auto text-nowrap">材料名</label>
 
             <TextField
-              oneRegister={register(`items.${index}.count`)}
-              error={errors.items?.[index]?.count}
-              placeholder="件数"
-              type="number"
+              oneRegister={register(`items.${index}.itemId`)}
+              error={errors.items?.[index]?.itemId}
+              placeholder="材料名"
+              type="text"
             />
           </div>
         ))}
