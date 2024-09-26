@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { PrimaryButton } from '../../../components/atom/button/primaryButton';
 import { TextField } from '../../../components/atom/input';
 import { recipeFromSchema, RecipeType } from '../../types';
+import { Combo } from '@/app/components/atom/input/listbox';
 
 const Page = () => {
   const router = useRouter(); //ルーターの取得
@@ -38,6 +39,7 @@ const Page = () => {
     >
       <div className="flex flex-row items-center gap-2 text-center">
         <div className="flex flex-1 flex-row">
+          <Combo />
           <TextField
             error={errors.name}
             placeholder="材料名"
