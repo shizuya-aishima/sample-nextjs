@@ -21,7 +21,7 @@ export const Combo = () => {
   const [query, setQuery] = React.useState('');
   const { control, watch } = useForm({
     defaultValues: {
-      id: 0,
+      id: 1,
       name: '',
     },
   });
@@ -61,18 +61,24 @@ export const Combo = () => {
             id: number;
             name: string;
           }>
+            // defaultValue={find(field.value)}
             aria-label="Assignee"
             displayValue={(person) => person?.name}
             onChange={(event) => setQuery(event.target.value)}
+            className="w-full appearance-none rounded border-2 border-gray-300 bg-white py-1.5 pl-3 pr-8 text-sm/6 text-gray-700 focus:border-indigo-500 focus:outline-none"
           />
-          <ComboboxOptions anchor="bottom" className="border empty:invisible">
+          <ComboboxOptions
+            anchor="bottom"
+            className="w-[var(--input-width)] rounded-xl border bg-white p-1 transition duration-100 ease-in [--anchor-gap:var(--spacing-1)] empty:invisible data-[leave]:data-[closed]:opacity-0"
+          >
             {filteredPeople.map((person) => (
               <ComboboxOption
                 key={person.id}
                 value={person}
-                className="data-[focus]:bg-blue-100"
+                className="group flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10"
               >
-                {person.name}
+                <div className="text-sm/6 text-gray-700">{person.name}</div>
+                {/* {person.name} */}
               </ComboboxOption>
             ))}
           </ComboboxOptions>
