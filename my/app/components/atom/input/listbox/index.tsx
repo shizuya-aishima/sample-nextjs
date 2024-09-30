@@ -6,6 +6,7 @@ import {
   ComboboxOption,
   ComboboxOptions,
 } from '@headlessui/react';
+import clsx from 'clsx';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -69,7 +70,33 @@ export const CustomCombobox = ({ data, value }: CustomComboboxProps) => {
                 value={person}
                 className="group flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-1.5 data-[focus]:bg-white/10"
               >
-                <div className="text-sm/6 text-gray-700">{person.name}</div>
+                {({ focus, selected }) => (
+                  <div
+                    className={clsx(
+                      'group flex gap-2',
+                      'text-sm/6 text-gray-700',
+                      focus && 'bg-indigo-500 text-white',
+                    )}
+                  >
+                    {selected && (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="m4.5 12.75 6 6 9-13.5"
+                        />
+                      </svg>
+                    )}
+                    {person.name}
+                  </div>
+                )}
               </ComboboxOption>
             ))}
           </ComboboxOptions>
