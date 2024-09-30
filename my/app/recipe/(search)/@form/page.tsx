@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { PrimaryButton } from '../../../components/atom/button/primaryButton';
 import { TextField } from '../../../components/atom/input';
 import { recipeFromSchema, RecipeType } from '../../types';
-import { Combo } from '@/app/components/atom/input/listbox';
+import { CustomCombobox } from '@/app/components/atom/input/listbox';
 
 const Page = () => {
   const router = useRouter(); //ルーターの取得
@@ -31,6 +31,13 @@ const Page = () => {
 
     router.push(`?${params.toString()}`); // 新しいクエリパラメーターでページをリロード
   };
+  const people = [
+    { id: '1', name: 'Durward Reynolds' },
+    { id: '2', name: 'Kenton Towne' },
+    { id: '3', name: 'Therese Wunsch' },
+    { id: '4', name: 'Benedict Kessler' },
+    { id: '5', name: 'Katelyn Rohan' },
+  ];
 
   return (
     <form
@@ -39,7 +46,7 @@ const Page = () => {
     >
       <div className="flex flex-row items-center gap-2 text-center">
         <div className="flex flex-1 flex-row">
-          <Combo />
+          <CustomCombobox data={people} value="44" />
           <TextField
             error={errors.name}
             placeholder="材料名"
