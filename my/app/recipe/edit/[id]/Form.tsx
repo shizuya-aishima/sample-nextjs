@@ -1,0 +1,72 @@
+'use client';
+
+import { PrimaryButton } from '@/app/components/atom/button/primaryButton';
+import { TextField } from '@/app/components/atom/input';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { recipeSchema, RecipeType } from '../../types';
+
+type RecipeEditFormProsp = {
+  data: RecipeType;
+  onClick: (input: RecipeType) => Promise<void>;
+};
+export const RecipeEditForm = ({ data, onClick }: RecipeEditFormProsp) => {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm<RecipeType>({
+    resolver: zodResolver(recipeSchema),
+    defaultValues: {
+      name: data.name,
+      items: data.items,
+      id: data.id,
+    },
+  });
+
+  const formData = getValues();
+
+  const onSubmit = async (input: RecipeType) => {
+    console.log(input);
+
+    await onClick(input);
+
+    router.push('/material');
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex w-full flex-col gap-2"
+    >
+      <input type="hidden" {...register('id')} />
+      <div className="flex flex-row gap-4">
+        <label className="m-auto text-nowrap">レシピ名</label>
+
+        <TextField
+          oneRegister={register('name')}
+          error={errors.name}
+          placeholder="レシピ名"
+        />
+      </div>
+      <div className="flex flex-row gap-4">
+        {formData.items.map((item, index) => (
+          <div key={index}>
+            <label className="m-auto text-nowrap">材料名</label>
+
+            <TextField
+              oneRegister={register(`items.${index}.itemId`)}
+              error={errors.items?.[index]?.itemId}
+              placeholder="材料名"
+              type="text"
+            />
+          </div>
+        ))}
+      </div>
+      <PrimaryButton>登録</PrimaryButton>
+    </form>
+  );
+};

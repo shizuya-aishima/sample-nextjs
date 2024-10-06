@@ -13,6 +13,10 @@ const initialState: NavigateState = [
     path: '/material',
   },
   {
+    name: 'recipe',
+    path: '/recipe',
+  },
+  {
     name: 'sample',
     path: '/sample',
   },

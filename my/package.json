@@ -11,8 +11,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.8",
     "@hookform/resolvers": "^3.9.0",
     "@reduxjs/toolkit": "^2.2.0",
+    "clsx": "^2.1.1",
     "firebase": "^10.13.0",
     "next": "latest",
     "react": "^18.2.0",
