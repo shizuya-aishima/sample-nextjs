@@ -21,9 +21,12 @@ export const CustomCombobox = ({ data, value }: CustomComboboxProps) => {
   const initialValue = { id: '', name: '' };
   const [extendedData] = React.useState([initialValue, ...data]);
 
+  const find = (id: string) =>
+    extendedData.find((e) => e.id === id) || initialValue;
+
   const [query, setQuery] = React.useState('');
   const { control, watch } = useForm<ComboboxItem>({
-    defaultValues: { ...initialValue, id: value },
+    defaultValues: find(value),
   });
 
   React.useEffect(() => {
@@ -39,8 +42,6 @@ export const CustomCombobox = ({ data, value }: CustomComboboxProps) => {
       : extendedData.filter((person) => {
           return person.name.toLowerCase().includes(query.toLowerCase());
         });
-
-  const find = (id: string) => extendedData.find((e) => e.id === id);
 
   return (
     <Controller
